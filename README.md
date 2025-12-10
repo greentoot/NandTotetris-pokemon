@@ -1,4 +1,3 @@
-# GROUPE 8 Anthony
 
 # VMTranslator
 
