@@ -73,6 +73,4 @@ q pour quitter le jeu (ou la fenetre en cour utilisation)
 t pour accéder a la team 
 Dasn team on peut changer la position de certain personnage avec s et les mettre en actif avec a
 ```
-[🎬 Télécharger / Voir la demo pokémon](poke.mp4)
-[🎬 Télécharger / Voir la demo devinette](devinette.mp4)
 
