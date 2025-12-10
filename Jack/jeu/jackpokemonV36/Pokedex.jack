@@ -1,0 +1,241 @@
+// Pokedex.jack - Collection de Pokemon capturés
+class Pokedex {
+    field Array captured;
+    field int totalPokemon;
+    field int capturedCount;
+    
+    constructor Pokedex new() {
+        var int i;
+        let totalPokemon = 10;
+        let capturedCount = 0;
+        let captured = Array.new(totalPokemon);
+        
+        let i = 0;
+        while (i < totalPokemon) {
+            let captured[i] = false;
+            let i = i + 1;
+        }
+        
+        return this;
+    }
+    
+    method void capture(int pokemonType) {
+        if (~captured[pokemonType]) {
+            let captured[pokemonType] = true;
+            let capturedCount = capturedCount + 1;
+        }
+        return;
+    }
+    
+    method boolean isCaptured(int pokemonType) {
+        return captured[pokemonType];
+    }
+    
+    method int getCapturedCount() {
+        return capturedCount;
+    }
+    
+    method boolean isComplete() {
+        return capturedCount = totalPokemon;
+    }
+    
+    method void display() {
+        var int i;
+        
+        do Output.moveCursor(1, 20);
+        do Output.printChar(80);  // P
+        do Output.printChar(79);  // O
+        do Output.printChar(75);  // K
+        do Output.printChar(69);  // E
+        do Output.printChar(68);  // D
+        do Output.printChar(69);  // E
+        do Output.printChar(88);  // X
+        
+        do Output.moveCursor(2, 15);
+        do Output.printChar(61);  // =
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        do Output.printChar(61);
+        
+        // Colonne 1 (Pokémon 1-5)
+        let i = 0;
+        while (i < 5) {
+            do Output.moveCursor(4 + i, 2);
+            do Output.printInt(i + 1);
+            do Output.printChar(46);  // .
+            do Output.printChar(32);  // espace
+            do printPokemonName(i);
+            do Output.printChar(32);  // espace
+            do Output.printChar(45);  // -
+            do Output.printChar(32);  // espace
+            
+            if (captured[i]) {
+                do Output.printChar(79);  // O
+                do Output.printChar(75);  // K
+            } else {
+                do Output.printChar(63);  // ?
+                do Output.printChar(63);
+                do Output.printChar(63);
+            }
+            
+            let i = i + 1;
+        }
+        
+        // Colonne 2 (Pokémon 6-10)
+        let i = 5;
+        while (i < totalPokemon) {
+            do Output.moveCursor(4 + (i - 5), 30);
+            do Output.printInt(i + 1);
+            do Output.printChar(46);  // .
+            do Output.printChar(32);  // espace
+            do printPokemonName(i);
+            do Output.printChar(32);  // espace
+            do Output.printChar(45);  // -
+            do Output.printChar(32);  // espace
+            
+            if (captured[i]) {
+                do Output.printChar(79);  // O
+                do Output.printChar(75);  // K
+            } else {
+                do Output.printChar(63);  // ?
+                do Output.printChar(63);
+                do Output.printChar(63);
+            }
+            
+            let i = i + 1;
+        }
+        
+        do Output.moveCursor(11, 10);
+        do Output.printChar(84);  // T
+        do Output.printChar(111); // o
+        do Output.printChar(116); // t
+        do Output.printChar(97);  // a
+        do Output.printChar(108); // l
+        do Output.printChar(58);  // :
+        do Output.printChar(32);  // espace
+        do Output.printInt(capturedCount);
+        do Output.printChar(47);  // /
+        do Output.printInt(totalPokemon);
+        
+        return;
+    }
+    
+    method void printPokemonName(int type) {
+        if (type = 0) { 
+            do Output.printChar(83);  // S
+            do Output.printChar(97);  // a
+            do Output.printChar(108); // l
+            do Output.printChar(97);  // a
+            do Output.printChar(109); // m
+            do Output.printChar(101); // e
+            do Output.printChar(99);  // c
+            do Output.printChar(104); // h
+            do Output.printChar(101); // e
+        }
+        if (type = 1) { 
+            do Output.printChar(67);  // C
+            do Output.printChar(97);  // a
+            do Output.printChar(114); // r
+            do Output.printChar(97);  // a
+            do Output.printChar(112); // p
+            do Output.printChar(117); // u
+            do Output.printChar(99);  // c
+            do Output.printChar(101); // e
+        }
+        if (type = 2) { 
+            do Output.printChar(66);  // B
+            do Output.printChar(117); // u
+            do Output.printChar(108); // l
+            do Output.printChar(98);  // b
+            do Output.printChar(105); // i
+            do Output.printChar(122); // z
+            do Output.printChar(97);  // a
+            do Output.printChar(114); // r
+            do Output.printChar(114); // r
+            do Output.printChar(101); // e
+        }
+        if (type = 3) { 
+            do Output.printChar(80);  // P
+            do Output.printChar(105); // i
+            do Output.printChar(107); // k
+            do Output.printChar(97);  // a
+            do Output.printChar(99);  // c
+            do Output.printChar(104); // h
+            do Output.printChar(117); // u
+        }
+        if (type = 4) { 
+            do Output.printChar(82);  // R
+            do Output.printChar(111); // o
+            do Output.printChar(117); // u
+            do Output.printChar(99);  // c
+            do Output.printChar(111); // o
+            do Output.printChar(111); // o
+            do Output.printChar(108); // l
+        }
+        if (type = 5) { 
+            do Output.printChar(65);  // A
+            do Output.printChar(98);  // b
+            do Output.printChar(114); // r
+            do Output.printChar(97);  // a
+        }
+        if (type = 6) { 
+            do Output.printChar(82);  // R
+            do Output.printChar(97);  // a
+            do Output.printChar(116); // t
+            do Output.printChar(116); // t
+            do Output.printChar(97);  // a
+            do Output.printChar(116); // t
+            do Output.printChar(97);  // a
+        }
+        if (type = 7) { 
+            do Output.printChar(77);  // M
+            do Output.printChar(121); // y
+            do Output.printChar(115); // s
+            do Output.printChar(116); // t
+            do Output.printChar(104); // h
+            do Output.printChar(101); // e
+            do Output.printChar(114); // r
+            do Output.printChar(98);  // b
+            do Output.printChar(101); // e
+        }
+        if (type = 8) { 
+            do Output.printChar(83);  // S
+            do Output.printChar(97);  // a
+            do Output.printChar(98);  // b
+            do Output.printChar(101); // e
+            do Output.printChar(108); // l
+            do Output.printChar(101); // e
+            do Output.printChar(116); // t
+            do Output.printChar(116); // t
+            do Output.printChar(101); // e
+        }
+        if (type = 9) { 
+            do Output.printChar(83);  // S
+            do Output.printChar(116); // t
+            do Output.printChar(97);  // a
+            do Output.printChar(114); // r
+            do Output.printChar(105); // i
+        }
+        return;
+    }
+    
+    method void dispose() {
+        do captured.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}

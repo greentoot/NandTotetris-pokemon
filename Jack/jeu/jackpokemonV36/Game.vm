@@ -1,0 +1,1848 @@
+function Game.new 0
+push constant 12
+call Memory.alloc 1
+pop pointer 0
+call MapManager.new 0
+pop this 0
+push constant 10
+push constant 8
+call Player.new 2
+pop this 1
+push this 1
+push this 0
+call Player.setMapManager 2
+pop temp 0
+push constant 0
+pop this 2
+push constant 0
+pop this 7
+call Pokedex.new 0
+pop this 3
+call PnjManager.new 0
+pop this 4
+push constant 0
+pop this 5
+push constant 0
+not
+pop this 6
+push this 1
+call Player.getTeam 1
+call TeamMenu.new 1
+pop this 8
+push constant 0
+pop this 9
+call Inventory.new 0
+pop this 10
+push this 10
+push this 1
+call Player.getTeam 1
+call ItemMenu.new 2
+pop this 11
+push pointer 0
+return
+function Game.run 1
+push argument 0
+pop pointer 0
+call Random.init 0
+pop temp 0
+call Screen.clearScreen 0
+pop temp 0
+push this 0
+call MapManager.draw 1
+pop temp 0
+push this 4
+push this 0
+call MapManager.getCurrentMapId 1
+call PnjManager.drawForMap 2
+pop temp 0
+push this 1
+call Player.draw 1
+pop temp 0
+label LABEL_0
+push this 6
+not
+if-goto LABEL_1
+call Keyboard.keyPressed 0
+pop local 0
+push this 5
+push constant 0
+eq
+not
+if-goto LABEL_2
+push local 0
+push constant 131
+eq
+not
+if-goto LABEL_4
+push pointer 0
+push constant 0
+push constant 1
+neg
+call Game.handleMove 3
+pop temp 0
+goto LABEL_5
+label LABEL_4
+label LABEL_5
+push local 0
+push constant 133
+eq
+not
+if-goto LABEL_6
+push pointer 0
+push constant 0
+push constant 1
+call Game.handleMove 3
+pop temp 0
+goto LABEL_7
+label LABEL_6
+label LABEL_7
+push local 0
+push constant 130
+eq
+not
+if-goto LABEL_8
+push pointer 0
+push constant 1
+neg
+push constant 0
+call Game.handleMove 3
+pop temp 0
+goto LABEL_9
+label LABEL_8
+label LABEL_9
+push local 0
+push constant 132
+eq
+not
+if-goto LABEL_10
+push pointer 0
+push constant 1
+push constant 0
+call Game.handleMove 3
+pop temp 0
+goto LABEL_11
+label LABEL_10
+label LABEL_11
+push local 0
+push constant 84
+eq
+not
+if-goto LABEL_12
+push pointer 0
+call Game.showTeamMenu 1
+pop temp 0
+goto LABEL_13
+label LABEL_12
+label LABEL_13
+push local 0
+push constant 80
+eq
+not
+if-goto LABEL_14
+push pointer 0
+call Game.showPokedex 1
+pop temp 0
+goto LABEL_15
+label LABEL_14
+label LABEL_15
+push local 0
+push constant 73
+eq
+not
+if-goto LABEL_16
+push pointer 0
+call Game.showInventory 1
+pop temp 0
+goto LABEL_17
+label LABEL_16
+label LABEL_17
+push local 0
+push constant 32
+eq
+not
+if-goto LABEL_18
+push pointer 0
+call Game.handleInteraction 1
+pop temp 0
+goto LABEL_19
+label LABEL_18
+label LABEL_19
+push local 0
+push constant 81
+eq
+not
+if-goto LABEL_20
+push constant 0
+pop this 6
+goto LABEL_21
+label LABEL_20
+label LABEL_21
+goto LABEL_3
+label LABEL_2
+push this 5
+push constant 1
+eq
+not
+if-goto LABEL_22
+push pointer 0
+push local 0
+call Game.handleBattle 2
+pop temp 0
+goto LABEL_23
+label LABEL_22
+label LABEL_23
+label LABEL_3
+push constant 100
+call Sys.wait 1
+pop temp 0
+goto LABEL_0
+label LABEL_1
+push constant 0
+return
+function Game.handleInteraction 2
+push argument 0
+pop pointer 0
+push this 0
+call MapManager.getCurrentMapId 1
+pop local 1
+push this 4
+push this 1
+call Player.getX 1
+push this 1
+call Player.getY 1
+push local 1
+call PnjManager.checkInteraction 4
+pop local 0
+push local 0
+push constant 0
+eq
+not
+not
+if-goto LABEL_24
+push local 0
+call Pnj.getIsTrainer 1
+push local 0
+call Pnj.isDefeated 1
+not
+and
+not
+if-goto LABEL_26
+push local 0
+pop this 9
+push pointer 0
+push local 0
+call Game.startTrainerBattle 2
+pop temp 0
+goto LABEL_27
+label LABEL_26
+push local 0
+push this 1
+push this 3
+call Pnj.interact 3
+pop temp 0
+call Screen.clearScreen 0
+pop temp 0
+push this 0
+call MapManager.draw 1
+pop temp 0
+push this 4
+push local 1
+call PnjManager.drawForMap 2
+pop temp 0
+push this 1
+call Player.draw 1
+pop temp 0
+label LABEL_27
+goto LABEL_25
+label LABEL_24
+label LABEL_25
+push constant 0
+return
+function Game.handleMove 6
+push argument 0
+pop pointer 0
+push this 1
+call Player.getX 1
+push argument 1
+add
+pop local 0
+push this 1
+call Player.getY 1
+push argument 2
+add
+pop local 1
+push this 0
+call MapManager.getCurrentMap 1
+pop local 4
+push this 0
+call MapManager.getCurrentMapId 1
+pop local 5
+push local 4
+push local 0
+push local 1
+call Map.getTile 3
+pop local 2
+push local 2
+push constant 49
+gt
+not
+if-goto LABEL_28
+push pointer 0
+push local 2
+push local 0
+push local 1
+call Game.handlePortal 4
+pop temp 0
+push constant 0
+return
+goto LABEL_29
+label LABEL_28
+label LABEL_29
+push this 4
+push local 0
+push local 1
+push local 5
+call PnjManager.isPnjAtPosition 4
+not
+if-goto LABEL_30
+push constant 0
+return
+goto LABEL_31
+label LABEL_30
+label LABEL_31
+push local 2
+push constant 0
+eq
+push local 2
+push constant 1
+eq
+or
+push local 2
+push constant 7
+eq
+or
+push local 2
+push constant 54
+eq
+or
+push local 2
+push constant 18
+eq
+or
+not
+if-goto LABEL_32
+push this 1
+call Player.erase 1
+pop temp 0
+push this 1
+push argument 1
+push argument 2
+call Player.move 3
+pop temp 0
+push this 1
+call Player.draw 1
+pop temp 0
+push local 2
+push constant 1
+eq
+push this 5
+push constant 0
+eq
+and
+not
+if-goto LABEL_34
+push constant 20
+call Random.chance 1
+pop local 3
+push local 3
+not
+if-goto LABEL_36
+push pointer 0
+call Game.startWildBattle 1
+pop temp 0
+goto LABEL_37
+label LABEL_36
+label LABEL_37
+goto LABEL_35
+label LABEL_34
+label LABEL_35
+goto LABEL_33
+label LABEL_32
+label LABEL_33
+push constant 0
+return
+function Game.handlePortal 4
+push argument 0
+pop pointer 0
+push this 0
+call MapManager.getCurrentMapId 1
+pop local 3
+push local 3
+pop local 0
+push argument 1
+push constant 50
+eq
+not
+if-goto LABEL_38
+push local 3
+push constant 0
+eq
+not
+if-goto LABEL_40
+push constant 1
+pop local 0
+goto LABEL_41
+label LABEL_40
+label LABEL_41
+push local 3
+push constant 1
+eq
+not
+if-goto LABEL_42
+push constant 0
+pop local 0
+goto LABEL_43
+label LABEL_42
+label LABEL_43
+goto LABEL_39
+label LABEL_38
+label LABEL_39
+push argument 1
+push constant 51
+eq
+not
+if-goto LABEL_44
+push local 3
+push constant 1
+eq
+not
+if-goto LABEL_46
+push constant 2
+pop local 0
+goto LABEL_47
+label LABEL_46
+label LABEL_47
+push local 3
+push constant 2
+eq
+not
+if-goto LABEL_48
+push constant 1
+pop local 0
+goto LABEL_49
+label LABEL_48
+label LABEL_49
+goto LABEL_45
+label LABEL_44
+label LABEL_45
+push argument 1
+push constant 53
+eq
+not
+if-goto LABEL_50
+push local 3
+push constant 0
+eq
+not
+if-goto LABEL_52
+push constant 3
+pop local 0
+goto LABEL_53
+label LABEL_52
+label LABEL_53
+push local 3
+push constant 3
+eq
+not
+if-goto LABEL_54
+push constant 0
+pop local 0
+goto LABEL_55
+label LABEL_54
+label LABEL_55
+goto LABEL_51
+label LABEL_50
+label LABEL_51
+push argument 1
+push constant 54
+eq
+not
+if-goto LABEL_56
+push local 3
+push constant 4
+eq
+not
+if-goto LABEL_58
+push constant 0
+pop local 0
+push constant 0
+pop this 5
+goto LABEL_59
+label LABEL_58
+label LABEL_59
+goto LABEL_57
+label LABEL_56
+label LABEL_57
+push argument 1
+push constant 55
+eq
+not
+if-goto LABEL_60
+push constant 4
+pop local 0
+goto LABEL_61
+label LABEL_60
+label LABEL_61
+push local 0
+push local 3
+eq
+not
+if-goto LABEL_62
+push constant 0
+return
+goto LABEL_63
+label LABEL_62
+label LABEL_63
+push constant 0
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+call Strings.printTeleport 0
+pop temp 0
+push constant 500
+call Sys.wait 1
+pop temp 0
+push this 0
+push local 0
+push argument 1
+call MapManager.switchMap 3
+pop temp 0
+push this 0
+call MapManager.getCurrentMap 1
+pop local 2
+push local 2
+push argument 1
+call Map.findPortal 2
+pop local 1
+push this 1
+push local 1
+push constant 0
+add
+pop pointer 1
+push that 0
+push local 1
+push constant 1
+add
+pop pointer 1
+push that 0
+call Player.setPosition 3
+pop temp 0
+push local 1
+call Array.dispose 1
+pop temp 0
+call Screen.clearScreen 0
+pop temp 0
+push this 0
+call MapManager.draw 1
+pop temp 0
+push this 4
+push local 0
+call PnjManager.drawForMap 2
+pop temp 0
+push this 1
+call Player.draw 1
+pop temp 0
+push constant 0
+return
+function Game.startWildBattle 1
+push argument 0
+pop pointer 0
+push constant 1
+pop this 5
+push this 7
+push constant 0
+eq
+not
+not
+if-goto LABEL_64
+push this 7
+call Pokemon.dispose 1
+pop temp 0
+goto LABEL_65
+label LABEL_64
+label LABEL_65
+push constant 0
+push constant 9
+call Random.randRange 2
+pop local 0
+push local 0
+push constant 3
+push constant 7
+call Random.randRange 2
+call Pokemon.new 2
+pop this 7
+push this 1
+call Player.getPokemon 1
+push this 7
+push this 3
+push this 1
+call Player.getTeam 1
+push this 10
+call Battle.new 5
+pop this 2
+call Screen.clearScreen 0
+pop temp 0
+push this 2
+call Battle.draw 1
+pop temp 0
+push constant 0
+return
+function Game.startTrainerBattle 2
+push argument 0
+pop pointer 0
+push constant 1
+pop this 5
+push argument 1
+call Pnj.getTeam 1
+pop local 1
+push local 1
+call Team.getActive 1
+pop local 0
+push this 1
+call Player.getPokemon 1
+push local 0
+push this 3
+push this 1
+call Player.getTeam 1
+push this 10
+call Battle.new 5
+pop this 2
+call Screen.clearScreen 0
+pop temp 0
+push this 2
+call Battle.draw 1
+pop temp 0
+push constant 0
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push constant 23
+call String.new 1
+push constant 85
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 118
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 102
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 1500
+call Sys.wait 1
+pop temp 0
+call Screen.clearScreen 0
+pop temp 0
+push this 2
+call Battle.draw 1
+pop temp 0
+push constant 0
+return
+function Game.endBattle 1
+push argument 0
+pop pointer 0
+push this 9
+push constant 0
+eq
+not
+not
+if-goto LABEL_66
+push argument 1
+not
+if-goto LABEL_68
+push this 9
+push constant 0
+not
+call Pnj.setDefeated 2
+pop temp 0
+push constant 0
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push constant 29
+call String.new 1
+push constant 86
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 118
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 122
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 118
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 2000
+call Sys.wait 1
+pop temp 0
+goto LABEL_69
+label LABEL_68
+label LABEL_69
+push constant 0
+pop this 9
+goto LABEL_67
+label LABEL_66
+label LABEL_67
+push this 2
+call Battle.disposeWithoutEnemy 1
+pop temp 0
+push constant 0
+pop this 2
+push constant 0
+pop this 5
+push this 0
+call MapManager.getCurrentMapId 1
+pop local 0
+call Screen.clearScreen 0
+pop temp 0
+push this 0
+call MapManager.draw 1
+pop temp 0
+push this 4
+push local 0
+call PnjManager.drawForMap 2
+pop temp 0
+push this 1
+call Player.draw 1
+pop temp 0
+push argument 2
+not
+if-goto LABEL_70
+push constant 0
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+call Strings.printPokemonCapture 0
+pop temp 0
+push constant 2000
+call Sys.wait 1
+pop temp 0
+push this 3
+call Pokedex.isComplete 1
+not
+if-goto LABEL_72
+push pointer 0
+call Game.winGame 1
+pop temp 0
+goto LABEL_73
+label LABEL_72
+label LABEL_73
+goto LABEL_71
+label LABEL_70
+push argument 1
+not
+if-goto LABEL_74
+push constant 0
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+call Strings.printVictoire 0
+pop temp 0
+push constant 1000
+call Sys.wait 1
+pop temp 0
+goto LABEL_75
+label LABEL_74
+label LABEL_75
+label LABEL_71
+push constant 0
+return
+function Game.healAllPokemon 1
+push argument 0
+pop pointer 0
+push this 1
+call Player.getTeam 1
+pop local 0
+push local 0
+call Team.healAll 1
+pop temp 0
+push constant 3
+push constant 2
+call Output.moveCursor 2
+pop temp 0
+push constant 28
+call String.new 1
+push constant 83
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 103
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 118
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 80
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 46
+call String.appendChar 2
+push constant 46
+call String.appendChar 2
+push constant 46
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 2000
+call Sys.wait 1
+pop temp 0
+push constant 3
+push constant 2
+call Output.moveCursor 2
+pop temp 0
+push constant 30
+call String.new 1
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 3
+push constant 2
+call Output.moveCursor 2
+pop temp 0
+push constant 32
+call String.new 1
+push constant 86
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 102
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 2000
+call Sys.wait 1
+pop temp 0
+push constant 3
+push constant 2
+call Output.moveCursor 2
+pop temp 0
+push constant 32
+call String.new 1
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 0
+return
+function Game.showInventory 2
+push argument 0
+pop pointer 0
+push constant 0
+pop local 1
+push this 11
+call ItemMenu.display 1
+pop temp 0
+label LABEL_76
+push local 1
+not
+not
+if-goto LABEL_77
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 131
+eq
+not
+if-goto LABEL_78
+push this 11
+push local 0
+call ItemMenu.handleInput 2
+pop temp 0
+push this 11
+call ItemMenu.display 1
+pop temp 0
+label LABEL_80
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+not
+if-goto LABEL_81
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto LABEL_80
+label LABEL_81
+goto LABEL_79
+label LABEL_78
+label LABEL_79
+push local 0
+push constant 133
+eq
+not
+if-goto LABEL_82
+push this 11
+push local 0
+call ItemMenu.handleInput 2
+pop temp 0
+push this 11
+call ItemMenu.display 1
+pop temp 0
+label LABEL_84
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+not
+if-goto LABEL_85
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto LABEL_84
+label LABEL_85
+goto LABEL_83
+label LABEL_82
+label LABEL_83
+push local 0
+push constant 128
+eq
+not
+if-goto LABEL_86
+push this 11
+push local 0
+call ItemMenu.handleInput 2
+pop temp 0
+push this 11
+call ItemMenu.display 1
+pop temp 0
+label LABEL_88
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+not
+if-goto LABEL_89
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto LABEL_88
+label LABEL_89
+goto LABEL_87
+label LABEL_86
+label LABEL_87
+push local 0
+push constant 81
+eq
+not
+if-goto LABEL_90
+push this 11
+call ItemMenu.isInPokemonSelection 1
+not
+if-goto LABEL_92
+push this 11
+push constant 0
+call ItemMenu.setInPokemonSelection 2
+pop temp 0
+push this 11
+call ItemMenu.display 1
+pop temp 0
+goto LABEL_93
+label LABEL_92
+push constant 0
+not
+pop local 1
+label LABEL_93
+label LABEL_94
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+not
+if-goto LABEL_95
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto LABEL_94
+label LABEL_95
+goto LABEL_91
+label LABEL_90
+label LABEL_91
+push constant 100
+call Sys.wait 1
+pop temp 0
+goto LABEL_76
+label LABEL_77
+call Screen.clearScreen 0
+pop temp 0
+push this 0
+call MapManager.draw 1
+pop temp 0
+push this 4
+push this 0
+call MapManager.getCurrentMapId 1
+call PnjManager.drawForMap 2
+pop temp 0
+push this 1
+call Player.draw 1
+pop temp 0
+push constant 0
+return
+function Game.showPokedex 0
+push argument 0
+pop pointer 0
+call Screen.clearScreen 0
+pop temp 0
+push this 3
+call Pokedex.display 1
+pop temp 0
+push constant 22
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+call Strings.Appuyersurunetouche 0
+pop temp 0
+label LABEL_96
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+if-goto LABEL_97
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto LABEL_96
+label LABEL_97
+label LABEL_98
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+not
+if-goto LABEL_99
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto LABEL_98
+label LABEL_99
+call Screen.clearScreen 0
+pop temp 0
+push this 0
+call MapManager.draw 1
+pop temp 0
+push this 4
+push this 0
+call MapManager.getCurrentMapId 1
+call PnjManager.drawForMap 2
+pop temp 0
+push this 1
+call Player.draw 1
+pop temp 0
+push constant 0
+return
+function Game.winGame 0
+push argument 0
+pop pointer 0
+push constant 2
+pop this 5
+call Screen.clearScreen 0
+pop temp 0
+push constant 10
+push constant 15
+call Output.moveCursor 2
+pop temp 0
+call Strings.printFelicitations 0
+pop temp 0
+push constant 12
+push constant 10
+call Output.moveCursor 2
+pop temp 0
+call Strings.printPokedexComplet 0
+pop temp 0
+push constant 14
+push constant 8
+call Output.moveCursor 2
+pop temp 0
+call Strings.printMaitrePokemon 0
+pop temp 0
+push constant 5000
+call Sys.wait 1
+pop temp 0
+push constant 0
+pop this 6
+push constant 0
+return
+function Game.showTeamMenu 2
+push argument 0
+pop pointer 0
+push constant 0
+pop local 1
+push this 8
+call TeamMenu.display 1
+pop temp 0
+label LABEL_100
+push local 1
+not
+not
+if-goto LABEL_101
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 131
+eq
+not
+if-goto LABEL_102
+push this 8
+push local 0
+call TeamMenu.handleInput 2
+pop temp 0
+push this 8
+call TeamMenu.display 1
+pop temp 0
+label LABEL_104
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+not
+if-goto LABEL_105
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto LABEL_104
+label LABEL_105
+goto LABEL_103
+label LABEL_102
+label LABEL_103
+push local 0
+push constant 133
+eq
+not
+if-goto LABEL_106
+push this 8
+push local 0
+call TeamMenu.handleInput 2
+pop temp 0
+push this 8
+call TeamMenu.display 1
+pop temp 0
+label LABEL_108
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+not
+if-goto LABEL_109
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto LABEL_108
+label LABEL_109
+goto LABEL_107
+label LABEL_106
+label LABEL_107
+push local 0
+push constant 128
+eq
+not
+if-goto LABEL_110
+push this 8
+push local 0
+call TeamMenu.handleInput 2
+pop temp 0
+push this 8
+call TeamMenu.display 1
+pop temp 0
+label LABEL_112
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+not
+if-goto LABEL_113
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto LABEL_112
+label LABEL_113
+goto LABEL_111
+label LABEL_110
+label LABEL_111
+push local 0
+push constant 81
+eq
+not
+if-goto LABEL_114
+push constant 0
+not
+pop local 1
+label LABEL_116
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+not
+if-goto LABEL_117
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto LABEL_116
+label LABEL_117
+goto LABEL_115
+label LABEL_114
+label LABEL_115
+push local 0
+push constant 65
+eq
+not
+if-goto LABEL_118
+push this 8
+push local 0
+call TeamMenu.handleInput 2
+pop temp 0
+push this 8
+call TeamMenu.display 1
+pop temp 0
+label LABEL_120
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+not
+if-goto LABEL_121
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto LABEL_120
+label LABEL_121
+goto LABEL_119
+label LABEL_118
+label LABEL_119
+push local 0
+push constant 83
+eq
+not
+if-goto LABEL_122
+push this 8
+push local 0
+call TeamMenu.handleInput 2
+pop temp 0
+push this 8
+call TeamMenu.display 1
+pop temp 0
+label LABEL_124
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+not
+if-goto LABEL_125
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto LABEL_124
+label LABEL_125
+goto LABEL_123
+label LABEL_122
+label LABEL_123
+push constant 100
+call Sys.wait 1
+pop temp 0
+goto LABEL_100
+label LABEL_101
+call Screen.clearScreen 0
+pop temp 0
+push this 0
+call MapManager.draw 1
+pop temp 0
+push this 4
+push this 0
+call MapManager.getCurrentMapId 1
+call PnjManager.drawForMap 2
+pop temp 0
+push this 1
+call Player.draw 1
+pop temp 0
+push constant 0
+return
+function Game.handleBattle 1
+push argument 0
+pop pointer 0
+push this 2
+call Battle.isInSwitchMenu 1
+not
+if-goto LABEL_126
+push argument 1
+push constant 131
+eq
+not
+if-goto LABEL_128
+push this 2
+push constant 1
+neg
+call Battle.moveSwitchSelection 2
+pop temp 0
+push this 2
+call Battle.drawSwitchMenu 1
+pop temp 0
+goto LABEL_129
+label LABEL_128
+label LABEL_129
+push argument 1
+push constant 133
+eq
+not
+if-goto LABEL_130
+push this 2
+push constant 1
+call Battle.moveSwitchSelection 2
+pop temp 0
+push this 2
+call Battle.drawSwitchMenu 1
+pop temp 0
+goto LABEL_131
+label LABEL_130
+label LABEL_131
+push argument 1
+push constant 128
+eq
+not
+if-goto LABEL_132
+push this 2
+push this 2
+call Battle.getSwitchSelectedIndex 1
+call Battle.switchPokemon 2
+pop local 0
+push this 2
+call Battle.draw 1
+pop temp 0
+push local 0
+push constant 2
+eq
+not
+if-goto LABEL_134
+push pointer 0
+push constant 0
+push constant 0
+call Game.endBattle 3
+pop temp 0
+goto LABEL_135
+label LABEL_134
+label LABEL_135
+goto LABEL_133
+label LABEL_132
+label LABEL_133
+push argument 1
+push constant 81
+eq
+not
+if-goto LABEL_136
+push this 2
+push constant 0
+call Battle.setInSwitchMenu 2
+pop temp 0
+push this 2
+call Battle.draw 1
+pop temp 0
+goto LABEL_137
+label LABEL_136
+label LABEL_137
+goto LABEL_127
+label LABEL_126
+push argument 1
+push constant 48
+gt
+push argument 1
+push constant 53
+lt
+and
+not
+if-goto LABEL_138
+push this 2
+push argument 1
+push constant 49
+sub
+call Battle.attack 2
+pop local 0
+push this 2
+call Battle.draw 1
+pop temp 0
+push local 0
+push constant 1
+eq
+not
+if-goto LABEL_140
+push pointer 0
+push constant 0
+not
+push constant 0
+call Game.endBattle 3
+pop temp 0
+goto LABEL_141
+label LABEL_140
+label LABEL_141
+push local 0
+push constant 2
+eq
+not
+if-goto LABEL_142
+push pointer 0
+push constant 0
+push constant 0
+call Game.endBattle 3
+pop temp 0
+goto LABEL_143
+label LABEL_142
+label LABEL_143
+push local 0
+push constant 3
+eq
+not
+if-goto LABEL_144
+push pointer 0
+push constant 0
+not
+push constant 0
+not
+call Game.endBattle 3
+pop temp 0
+goto LABEL_145
+label LABEL_144
+label LABEL_145
+goto LABEL_139
+label LABEL_138
+label LABEL_139
+push argument 1
+push constant 73
+eq
+not
+if-goto LABEL_146
+push pointer 0
+call Game.showInventory 1
+pop temp 0
+push this 2
+call Battle.draw 1
+pop temp 0
+goto LABEL_147
+label LABEL_146
+label LABEL_147
+push argument 1
+push constant 67
+eq
+push this 9
+push constant 0
+eq
+and
+not
+if-goto LABEL_148
+push this 2
+call Battle.attemptCapture 1
+pop local 0
+push this 2
+call Battle.draw 1
+pop temp 0
+push local 0
+push constant 3
+eq
+not
+if-goto LABEL_150
+push pointer 0
+push constant 0
+not
+push constant 0
+not
+call Game.endBattle 3
+pop temp 0
+goto LABEL_151
+label LABEL_150
+label LABEL_151
+goto LABEL_149
+label LABEL_148
+label LABEL_149
+push argument 1
+push constant 70
+eq
+not
+if-goto LABEL_152
+push pointer 0
+push constant 0
+push constant 0
+call Game.endBattle 3
+pop temp 0
+goto LABEL_153
+label LABEL_152
+label LABEL_153
+push argument 1
+push constant 83
+eq
+not
+if-goto LABEL_154
+push this 2
+push constant 0
+not
+call Battle.setInSwitchMenu 2
+pop temp 0
+push this 2
+call Battle.drawSwitchMenu 1
+pop temp 0
+goto LABEL_155
+label LABEL_154
+label LABEL_155
+label LABEL_127
+push constant 0
+return
+function Game.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call MapManager.dispose 1
+pop temp 0
+push this 8
+call TeamMenu.dispose 1
+pop temp 0
+push this 1
+call Player.dispose 1
+pop temp 0
+push this 10
+call Inventory.dispose 1
+pop temp 0
+push this 11
+call ItemMenu.dispose 1
+pop temp 0
+push this 3
+call Pokedex.dispose 1
+pop temp 0
+push this 4
+call PnjManager.dispose 1
+pop temp 0
+push this 7
+push constant 0
+eq
+not
+not
+if-goto LABEL_156
+push this 7
+call Pokemon.dispose 1
+pop temp 0
+goto LABEL_157
+label LABEL_156
+label LABEL_157
+push this 2
+push constant 0
+eq
+not
+not
+if-goto LABEL_158
+push this 2
+call Battle.disposeWithoutEnemy 1
+pop temp 0
+goto LABEL_159
+label LABEL_158
+label LABEL_159
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

@@ -1,0 +1,146 @@
+{
+    "line": 1,
+    "col": 1,
+    "type": "class",
+    "name": "main",
+    "vardec": [],
+    "subroutine": [
+        {
+            "line": 2,
+            "col": 2,
+            "type": "function",
+            "return": "int",
+            "name": "factorielle",
+            "argument": [
+                {
+                    "line": 2,
+                    "col": 27,
+                    "kind": "parameter",
+                    "type": "int",
+                    "varname": "a"
+                }
+            ],
+            "local": [
+                {
+                    "line": 3,
+                    "col": 11,
+                    "kind": "local",
+                    "name": "b"
+                }
+            ],
+            "instructions": [
+                {
+                    "line": 4,
+                    "col": 3,
+                    "type": "letStatement",
+                    "varName": "b",
+                    "valeur": [
+                        {
+                            "line": 4,
+                            "col": 11,
+                            "type": "int",
+                            "value": "1"
+                        }
+                    ]
+                },
+                {
+                    "line": 5,
+                    "col": 3,
+                    "type": "whileStatement",
+                    "condition": [
+                        {
+                            "line": 5,
+                            "col": 10,
+                            "type": "varName",
+                            "value": "a"
+                        },
+                        {
+                            "line": 5,
+                            "col": 12,
+                            "type": "op",
+                            "value": ">"
+                        },
+                        {
+                            "line": 5,
+                            "col": 14,
+                            "type": "int",
+                            "value": "1"
+                        }
+                    ],
+                    "instructions": [
+                        {
+                            "line": 6,
+                            "col": 4,
+                            "type": "letStatement",
+                            "varName": "b",
+                            "valeur": [
+                                {
+                                    "line": 6,
+                                    "col": 12,
+                                    "type": "varName",
+                                    "value": "b"
+                                },
+                                {
+                                    "line": 6,
+                                    "col": 14,
+                                    "type": "op",
+                                    "value": "*"
+                                },
+                                {
+                                    "line": 6,
+                                    "col": 16,
+                                    "type": "varName",
+                                    "value": "a"
+                                }
+                            ]
+                        },
+                        {
+                            "line": 7,
+                            "col": 4,
+                            "type": "letStatement",
+                            "varName": "a",
+                            "valeur": [
+                                {
+                                    "line": 7,
+                                    "col": 12,
+                                    "type": "varName",
+                                    "value": "a"
+                                },
+                                {
+                                    "line": 7,
+                                    "col": 14,
+                                    "type": "op",
+                                    "value": "+"
+                                },
+                                {
+                                    "line": 7,
+                                    "col": 16,
+                                    "type": "-",
+                                    "value": {
+                                        "line": 7,
+                                        "col": 17,
+                                        "type": "int",
+                                        "value": "1"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "line": 9,
+                    "col": 3,
+                    "type": "returnStatement",
+                    "valeur": [
+                        {
+                            "line": 9,
+                            "col": 10,
+                            "type": "varName",
+                            "value": "b"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

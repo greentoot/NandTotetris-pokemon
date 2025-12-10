@@ -1,0 +1,86 @@
+function Rand.seed 0
+    push argument 0
+    push constant 17
+    call Math.multiply 2
+    push constant 23
+    add
+    push constant 3
+    call Math.divide 2
+    pop static 0
+    call Rand.next 0
+    pop static 0
+    call Rand.next 0
+    pop static 0
+    call Rand.next 0
+    pop static 0
+    push constant 0
+    return
+function Rand.next 1
+    push static 0
+    pop local 0
+    push local 0
+    push constant 73
+    call Math.multiply 2
+    push constant 19
+    add
+    push constant 2
+    call Math.divide 2
+    pop local 0
+    push local 0
+    push constant 0
+    lt
+    not
+    if-goto Rand_1
+    push constant 0
+    push local 0
+    sub
+    pop local 0
+    goto Rand_0
+label Rand_1
+label Rand_0
+label Rand_2
+    push local 0
+    push constant 32767
+    gt
+    not
+    if-goto Rand_3
+    push local 0
+    push constant 2
+    call Math.divide 2
+    pop local 0
+    goto Rand_2
+label Rand_3
+    push local 0
+    pop static 0
+    push local 0
+    return
+function Rand.seededRandom 2
+    push argument 2
+    call Rand.seed 1
+    pop temp 0
+    call Rand.next 0
+    pop local 0
+    push argument 1
+    push argument 0
+    sub
+    push constant 1
+    add
+    pop local 1
+label Rand_4
+    push local 0
+    push local 1
+    gt
+    not
+    if-goto Rand_5
+    push local 0
+    push constant 2
+    call Math.divide 2
+    pop local 0
+    goto Rand_4
+label Rand_5
+    push local 0
+    push argument 0
+    add
+    pop local 0
+    push local 0
+    return

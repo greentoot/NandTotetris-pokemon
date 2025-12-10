@@ -1,0 +1,1125 @@
+// Strings.jack - Utilitaire centralisé pour afficher du texte sans allocation mémoire
+class Strings {
+    
+    // ==================== NOMS DE POKEMON ====================
+    
+    function void printSalameche() {
+        do Output.printChar(83);  // S
+        do Output.printChar(97);  // a
+        do Output.printChar(108); // l
+        do Output.printChar(97);  // a
+        do Output.printChar(109); // m
+        do Output.printChar(101); // e
+        do Output.printChar(99);  // c
+        do Output.printChar(104); // h
+        do Output.printChar(101); // e
+        return;
+    }
+    
+    function void printCarapuce() {
+        do Output.printChar(67);  // C
+        do Output.printChar(97);  // a
+        do Output.printChar(114); // r
+        do Output.printChar(97);  // a
+        do Output.printChar(112); // p
+        do Output.printChar(117); // u
+        do Output.printChar(99);  // c
+        do Output.printChar(101); // e
+        return;
+    }
+    
+    function void printBulbizarre() {
+        do Output.printChar(66);  // B
+        do Output.printChar(117); // u
+        do Output.printChar(108); // l
+        do Output.printChar(98);  // b
+        do Output.printChar(105); // i
+        do Output.printChar(122); // z
+        do Output.printChar(97);  // a
+        do Output.printChar(114); // r
+        do Output.printChar(114); // r
+        do Output.printChar(101); // e
+        return;
+    }
+    
+    function void printPikachu() {
+        do Output.printChar(80);  // P
+        do Output.printChar(105); // i
+        do Output.printChar(107); // k
+        do Output.printChar(97);  // a
+        do Output.printChar(99);  // c
+        do Output.printChar(104); // h
+        do Output.printChar(117); // u
+        return;
+    }
+    
+    function void printRoucool() {
+        do Output.printChar(82);  // R
+        do Output.printChar(111); // o
+        do Output.printChar(117); // u
+        do Output.printChar(99);  // c
+        do Output.printChar(111); // o
+        do Output.printChar(111); // o
+        do Output.printChar(108); // l
+        return;
+    }
+    
+    function void printAbra() {
+        do Output.printChar(65);  // A
+        do Output.printChar(98);  // b
+        do Output.printChar(114); // r
+        do Output.printChar(97);  // a
+        return;
+    }
+    
+    function void printRattata() {
+        do Output.printChar(82);  // R
+        do Output.printChar(97);  // a
+        do Output.printChar(116); // t
+        do Output.printChar(116); // t
+        do Output.printChar(97);  // a
+        do Output.printChar(116); // t
+        do Output.printChar(97);  // a
+        return;
+    }
+    
+    function void printMystherbe() {
+        do Output.printChar(77);  // M
+        do Output.printChar(121); // y
+        do Output.printChar(115); // s
+        do Output.printChar(116); // t
+        do Output.printChar(104); // h
+        do Output.printChar(101); // e
+        do Output.printChar(114); // r
+        do Output.printChar(98);  // b
+        do Output.printChar(101); // e
+        return;
+    }
+    
+    function void printSabelette() {
+        do Output.printChar(83);  // S
+        do Output.printChar(97);  // a
+        do Output.printChar(98);  // b
+        do Output.printChar(101); // e
+        do Output.printChar(108); // l
+        do Output.printChar(101); // e
+        do Output.printChar(116); // t
+        do Output.printChar(116); // t
+        do Output.printChar(101); // e
+        return;
+    }
+    
+    function void printStari() {
+        do Output.printChar(83);  // S
+        do Output.printChar(116); // t
+        do Output.printChar(97);  // a
+        do Output.printChar(114); // r
+        do Output.printChar(105); // i
+        return;
+    }
+    
+    function void printPokemonName(int type) {
+        if (type = 0) { do Strings.printSalameche(); }
+        if (type = 1) { do Strings.printCarapuce(); }
+        if (type = 2) { do Strings.printBulbizarre(); }
+        if (type = 3) { do Strings.printPikachu(); }
+        if (type = 4) { do Strings.printRoucool(); }
+        if (type = 5) { do Strings.printAbra(); }
+        if (type = 6) { do Strings.printRattata(); }
+        if (type = 7) { do Strings.printMystherbe(); }
+        if (type = 8) { do Strings.printSabelette(); }
+        if (type = 9) { do Strings.printStari(); }
+        return;
+    }
+    
+    // ==================== NOMS D'ATTAQUES ====================
+    
+    function void printGriffe() {
+        do Output.printChar(71);  // G
+        do Output.printChar(114); // r
+        do Output.printChar(105); // i
+        do Output.printChar(102); // f
+        do Output.printChar(102); // f
+        do Output.printChar(101); // e
+        return;
+    }
+    
+    function void printFlammeche() {
+        do Output.printChar(70);  // F
+        do Output.printChar(108); // l
+        do Output.printChar(97);  // a
+        do Output.printChar(109); // m
+        do Output.printChar(109); // m
+        do Output.printChar(101); // e
+        do Output.printChar(99);  // c
+        do Output.printChar(104); // h
+        do Output.printChar(101); // e
+        return;
+    }
+    
+    function void printCharge() {
+        do Output.printChar(67);  // C
+        do Output.printChar(104); // h
+        do Output.printChar(97);  // a
+        do Output.printChar(114); // r
+        do Output.printChar(103); // g
+        do Output.printChar(101); // e
+        return;
+    }
+    
+    function void printPistoletO() {
+        do Output.printChar(80);  // P
+        do Output.printChar(105); // i
+        do Output.printChar(115); // s
+        do Output.printChar(116); // t
+        do Output.printChar(111); // o
+        do Output.printChar(108); // l
+        do Output.printChar(101); // e
+        do Output.printChar(116); // t
+        do Output.printChar(32);  // espace
+        do Output.printChar(79);  // O
+        return;
+    }
+    
+    function void printFouetLianes() {
+        do Output.printChar(70);  // F
+        do Output.printChar(111); // o
+        do Output.printChar(117); // u
+        do Output.printChar(101); // e
+        do Output.printChar(116); // t
+        do Output.printChar(32);  // espace
+        do Output.printChar(76);  // L
+        do Output.printChar(105); // i
+        do Output.printChar(97);  // a
+        do Output.printChar(110); // n
+        do Output.printChar(101); // e
+        do Output.printChar(115); // s
+        return;
+    }
+    
+    function void printViveAttaque() {
+        do Output.printChar(86);  // V
+        do Output.printChar(105); // i
+        do Output.printChar(118); // v
+        do Output.printChar(101); // e
+        do Output.printChar(45);  // -
+        do Output.printChar(65);  // A
+        do Output.printChar(116);  // t
+        do Output.printChar(116); // t
+        do Output.printChar(97);  // a
+        do Output.printChar(113); // q
+        do Output.printChar(117); // u
+        do Output.printChar(101); // e
+        return;
+    }
+    
+    function void printEclair() {
+        do Output.printChar(69);  // E
+        do Output.printChar(99);  // c
+        do Output.printChar(108); // l
+        do Output.printChar(97);  // a
+        do Output.printChar(105); // i
+        do Output.printChar(114); // r
+        return;
+    }
+    
+    function void printPicpic() {
+        do Output.printChar(80);  // P
+        do Output.printChar(105); // i
+        do Output.printChar(99);  // c
+        do Output.printChar(112); // p
+        do Output.printChar(105); // i
+        do Output.printChar(99);  // c
+        return;
+    }
+    
+    function void printCruAile() {
+        do Output.printChar(67);  // C
+        do Output.printChar(114); // r
+        do Output.printChar(117); // u
+        do Output.printChar(45);  // -
+        do Output.printChar(65);  // A
+        do Output.printChar(105); // i
+        do Output.printChar(108); // l
+        do Output.printChar(101); // e
+        return;
+    }
+    
+    function void printTeleport() {
+        do Output.printChar(84);  // T
+        do Output.printChar(101); // e
+        do Output.printChar(108); // l
+        do Output.printChar(101); // e
+        do Output.printChar(112); // p
+        do Output.printChar(111); // o
+        do Output.printChar(114); // r
+        do Output.printChar(116); // t
+        return;
+    }
+    
+    function void printChocMental() {
+        do Output.printChar(67);  // C
+        do Output.printChar(104); // h
+        do Output.printChar(111); // o
+        do Output.printChar(99);  // c
+        do Output.printChar(32);  // espace
+        do Output.printChar(77);  // M
+        do Output.printChar(101); // e
+        do Output.printChar(110); // n
+        do Output.printChar(116); // t
+        do Output.printChar(97);  // a
+        do Output.printChar(108); // l
+        return;
+    }
+    
+    function void printCrocDeMort() {
+        do Output.printChar(67);  // C
+        do Output.printChar(114); // r
+        do Output.printChar(111); // o
+        do Output.printChar(99);  // c
+        do Output.printChar(32);  // espace
+        do Output.printChar(100); // d
+        do Output.printChar(101); // e
+        do Output.printChar(32);  // espace
+        do Output.printChar(77);  // M
+        do Output.printChar(111); // o
+        do Output.printChar(114); // r
+        do Output.printChar(116); // t
+        return;
+    }
+    
+    function void printPoudreDodo() {
+        do Output.printChar(80);  // P
+        do Output.printChar(111); // o
+        do Output.printChar(117); // u
+        do Output.printChar(100); // d
+        do Output.printChar(114); // r
+        do Output.printChar(101); // e
+        do Output.printChar(32);  // espace
+        do Output.printChar(68);  // D
+        do Output.printChar(111); // o
+        do Output.printChar(100); // d
+        do Output.printChar(111); // o
+        return;
+    }
+    
+    function void printSeisme() {
+        do Output.printChar(83);  // S
+        do Output.printChar(101); // e
+        do Output.printChar(105); // i
+        do Output.printChar(115); // s
+        do Output.printChar(109); // m
+        do Output.printChar(101); // e
+        return;
+    }
+    
+    function void printHydrocanon() {
+        do Output.printChar(72);  // H
+        do Output.printChar(121); // y
+        do Output.printChar(100); // d
+        do Output.printChar(114); // r
+        do Output.printChar(111); // o
+        do Output.printChar(99);  // c
+        do Output.printChar(97);  // a
+        do Output.printChar(110); // n
+        do Output.printChar(111); // o
+        do Output.printChar(110); // n
+        return;
+    }
+    
+    function void printMoveName(int moveId) {
+        if (moveId = 0) { do Strings.printGriffe(); }
+        if (moveId = 1) { do Strings.printFlammeche(); }
+        if (moveId = 2) { do Strings.printCharge(); }
+        if (moveId = 3) { do Strings.printPistoletO(); }
+        if (moveId = 4) { do Strings.printCharge(); }
+        if (moveId = 5) { do Strings.printFouetLianes(); }
+        if (moveId = 6) { do Strings.printViveAttaque(); }
+        if (moveId = 7) { do Strings.printEclair(); }
+        if (moveId = 8) { do Strings.printPicpic(); }
+        if (moveId = 9) { do Strings.printCruAile(); }
+        if (moveId = 10) { do Strings.printTeleport(); }
+        if (moveId = 11) { do Strings.printChocMental(); }
+        if (moveId = 12) { do Strings.printCrocDeMort(); }
+        if (moveId = 13) { do Strings.printPoudreDodo(); }
+        if (moveId = 14) { do Strings.printSeisme(); }
+        if (moveId = 15) { do Strings.printHydrocanon(); }
+        return;
+    }
+    
+    // ==================== MESSAGES DE COMBAT ====================
+    
+    function void printNv() {
+        do Output.printChar(78);  // N
+        do Output.printChar(118); // v
+        do Output.printChar(46);  // .
+        return;
+    }
+    
+    function void printHP() {
+        do Output.printChar(72);  // H
+        do Output.printChar(80);  // P
+        do Output.printChar(58);  // :
+        return;
+    }
+    
+    function void printChoisissezAttaque() {
+        do Output.printChar(67);  // C
+        do Output.printChar(104); // h
+        do Output.printChar(111); // o
+        do Output.printChar(105); // i
+        do Output.printChar(115); // s
+        do Output.printChar(105); // i
+        do Output.printChar(115); // s
+        do Output.printChar(115); // s
+        do Output.printChar(101); // e
+        do Output.printChar(122); // z
+        do Output.printChar(32);  // espace
+        do Output.printChar(117); // u
+        do Output.printChar(110); // n
+        do Output.printChar(101); // e
+        do Output.printChar(32);  // espace
+        do Output.printChar(97);  // a
+        do Output.printChar(116);  // t
+        do Output.printChar(116); // t
+        do Output.printChar(97);  // a
+        do Output.printChar(113); // q
+        do Output.printChar(117); // u
+        do Output.printChar(101); // e
+        do Output.printChar(58);  // :
+        return;
+    }
+    
+    function void printCapturer() {
+        do Output.printChar(40);  // (
+        do Output.printChar(67);  // C
+        do Output.printChar(41);  // )
+        do Output.printChar(32);  // espace
+        do Output.printChar(67);  // C
+        do Output.printChar(97);  // a
+        do Output.printChar(112); // p
+        do Output.printChar(116); // t
+        do Output.printChar(117); // u
+        do Output.printChar(114); // r
+        do Output.printChar(101); // e
+        do Output.printChar(114); // r
+        return;
+    }
+    
+    function void printFuir() {
+        do Output.printChar(40);  // (
+        do Output.printChar(70);  // F
+        do Output.printChar(41);  // )
+        do Output.printChar(32);  // espace
+        do Output.printChar(70);  // F
+        do Output.printChar(117); // u
+        do Output.printChar(105); // i
+        do Output.printChar(114); // r
+        return;
+    }
+    
+    function void printVousInfligez() {
+        do Output.printChar(86);  // V
+        do Output.printChar(111); // o
+        do Output.printChar(117); // u
+        do Output.printChar(115); // s
+        do Output.printChar(32);  // espace
+        do Output.printChar(105); // i
+        do Output.printChar(110); // n
+        do Output.printChar(102); // f
+        do Output.printChar(108); // l
+        do Output.printChar(105); // i
+        do Output.printChar(103); // g
+        do Output.printChar(101); // e
+        do Output.printChar(122); // z
+        do Output.printChar(32);  // espace
+        return;
+    }
+    
+    function void printDegats() {
+        do Output.printChar(32);  // espace
+        do Output.printChar(100); // d
+        do Output.printChar(101); // e
+        do Output.printChar(103); // g
+        do Output.printChar(97);  // a
+        do Output.printChar(116); // t
+        do Output.printChar(115); // s
+        do Output.printChar(33);  // !
+        return;
+    }
+    
+    function void printEnnemiInflige() {
+        do Output.printChar(69);  // E
+        do Output.printChar(110); // n
+        do Output.printChar(110); // n
+        do Output.printChar(101); // e
+        do Output.printChar(109); // m
+        do Output.printChar(105); // i
+        do Output.printChar(32);  // espace
+        do Output.printChar(105); // i
+        do Output.printChar(110); // n
+        do Output.printChar(102); // f
+        do Output.printChar(108); // l
+        do Output.printChar(105); // i
+        do Output.printChar(103); // g
+        do Output.printChar(101); // e
+        do Output.printChar(32);  // espace
+        return;
+    }
+    
+    function void printLancerPokeball() {
+        do Output.printChar(76);  // L
+        do Output.printChar(97);  // a
+        do Output.printChar(110); // n
+        do Output.printChar(99);  // c
+        do Output.printChar(101); // e
+        do Output.printChar(114); // r
+        do Output.printChar(32);  // espace
+        do Output.printChar(100); // d
+        do Output.printChar(101); // e
+        do Output.printChar(32);  // espace
+        do Output.printChar(80);  // P
+        do Output.printChar(111); // o
+        do Output.printChar(107); // k
+        do Output.printChar(101); // e
+        do Output.printChar(98);  // b
+        do Output.printChar(97);  // a
+        do Output.printChar(108); // l
+        do Output.printChar(108); // l
+        do Output.printChar(46);  // .
+        do Output.printChar(46);  // .
+        do Output.printChar(46);  // .
+        return;
+    }
+    
+    function void printCaptureReussie() {
+        do Output.printChar(67);  // C
+        do Output.printChar(97);  // a
+        do Output.printChar(112); // p
+        do Output.printChar(116); // t
+        do Output.printChar(117); // u
+        do Output.printChar(114); // r
+        do Output.printChar(101); // e
+        do Output.printChar(32);  // espace
+        do Output.printChar(114); // r
+        do Output.printChar(101); // e
+        do Output.printChar(117); // u
+        do Output.printChar(115); // s
+        do Output.printChar(115); // s
+        do Output.printChar(105); // i
+        do Output.printChar(101); // e
+        do Output.printChar(33);  // !
+        return;
+    }
+    
+    function void printPokemonEchappe() {
+        do Output.printChar(76);  // L
+        do Output.printChar(101); // e
+        do Output.printChar(32);  // espace
+        do Output.printChar(80);  // P
+        do Output.printChar(111); // o
+        do Output.printChar(107); // k
+        do Output.printChar(101); // e
+        do Output.printChar(109); // m
+        do Output.printChar(111); // o
+        do Output.printChar(110); // n
+        do Output.printChar(32);  // espace
+        do Output.printChar(115); // s
+        do Output.printChar(39);  // '
+        do Output.printChar(101); // e
+        do Output.printChar(115); // s
+        do Output.printChar(116); // t
+        do Output.printChar(32);  // espace
+        do Output.printChar(101); // e
+        do Output.printChar(99);  // c
+        do Output.printChar(104); // h
+        do Output.printChar(97);  // a
+        do Output.printChar(112); // p
+        do Output.printChar(112); // p
+        do Output.printChar(101); // e
+        do Output.printChar(33);  // !
+        return;
+    }
+    
+    // ==================== MESSAGES DIVERS ====================
+    
+    function void printPokedex() {
+        do Output.printChar(80);  // P
+        do Output.printChar(79);  // O
+        do Output.printChar(75);  // K
+        do Output.printChar(69);  // E
+        do Output.printChar(68);  // D
+        do Output.printChar(69);  // E
+        do Output.printChar(88);  // X
+        return;
+    }
+    
+    function void printTotal() {
+        do Output.printChar(84);  // T
+        do Output.printChar(111); // o
+        do Output.printChar(116); // t
+        do Output.printChar(97);  // a
+        do Output.printChar(108); // l
+        do Output.printChar(58);  // :
+        do Output.printChar(32);  // espace
+        return;
+    }
+    
+    function void printVictoire() {
+        do Output.printChar(86);  // V
+        do Output.printChar(105); // i
+        do Output.printChar(99);  // c
+        do Output.printChar(116); // t
+        do Output.printChar(111); // o
+        do Output.printChar(105); // i
+        do Output.printChar(114); // r
+        do Output.printChar(101); // e
+        do Output.printChar(33);  // !
+        return;
+    }
+    
+    function void printPokemonCapture() {
+        do Output.printChar(80);  // P
+        do Output.printChar(111); // o
+        do Output.printChar(107); // k
+        do Output.printChar(101); // e
+        do Output.printChar(109); // m
+        do Output.printChar(111); // o
+        do Output.printChar(110); // n
+        do Output.printChar(32);  // espace
+        do Output.printChar(99);  // c
+        do Output.printChar(97);  // a
+        do Output.printChar(112); // p
+        do Output.printChar(116); // t
+        do Output.printChar(117); // u
+        do Output.printChar(114); // r
+        do Output.printChar(101); // e
+        do Output.printChar(33);  // !
+        return;
+    }
+    
+    function void printFelicitations() {
+        do Output.printChar(70);  // F
+        do Output.printChar(69);  // E
+        do Output.printChar(76);  // L
+        do Output.printChar(73);  // I
+        do Output.printChar(67);  // C
+        do Output.printChar(73);  // I
+        do Output.printChar(84);  // T
+        do Output.printChar(65);  // A
+        do Output.printChar(84);  // T
+        do Output.printChar(73);  // I
+        do Output.printChar(79);  // O
+        do Output.printChar(78);  // N
+        do Output.printChar(83);  // S
+        do Output.printChar(33);  // !
+        return;
+    }
+    
+    function void printPokedexComplet() {
+        do Output.printChar(80);  // P
+        do Output.printChar(111); // o
+        do Output.printChar(107); // k
+        do Output.printChar(101); // e
+        do Output.printChar(100); // d
+        do Output.printChar(101); // e
+        do Output.printChar(120); // x
+        do Output.printChar(32);  // espace
+        do Output.printChar(99);  // c
+        do Output.printChar(111); // o
+        do Output.printChar(109); // m
+        do Output.printChar(112); // p
+        do Output.printChar(108); // l
+        do Output.printChar(101); // e
+        do Output.printChar(116); // t
+        do Output.printChar(33);  // !
+        return;
+    }
+    
+    function void printMaitrePokemon() {
+        do Output.printChar(86);  // V
+        do Output.printChar(111); // o
+        do Output.printChar(117); // u
+        do Output.printChar(115); // s
+        do Output.printChar(32);  // espace
+        do Output.printChar(101); // e
+        do Output.printChar(116); // t
+        do Output.printChar(101); // e
+        do Output.printChar(115); // s
+        do Output.printChar(32);  // espace
+        do Output.printChar(117); // u
+        do Output.printChar(110); // n
+        do Output.printChar(32);  // espace
+        do Output.printChar(77);  // M
+        do Output.printChar(97);  // a
+        do Output.printChar(105); // i
+        do Output.printChar(116); // t
+        do Output.printChar(114); // r
+        do Output.printChar(101); // e
+        do Output.printChar(32);  // espace
+        do Output.printChar(80);  // P
+        do Output.printChar(111); // o
+        do Output.printChar(107); // k
+        do Output.printChar(101); // e
+        do Output.printChar(109); // m
+        do Output.printChar(111); // o
+        do Output.printChar(110); // n
+        do Output.printChar(33);  // !
+        return;
+    }
+    function void Appuyersurunetouche(){
+        do Output.printChar(65);  // A
+        do Output.printChar(112); // p
+        do Output.printChar(112); // p
+        do Output.printChar(117); // u
+        do Output.printChar(121); // y
+        do Output.printChar(101); // e
+        do Output.printChar(114); // r
+        do Output.printChar(32);  // espace
+        do Output.printChar(115); // s
+        do Output.printChar(117); // u
+        do Output.printChar(114); // r
+        do Output.printChar(32);  // espace
+        do Output.printChar(117); // u
+        do Output.printChar(110); // n
+        do Output.printChar(101); // e
+        do Output.printChar(32);  // espace
+        do Output.printChar(116); // t
+        do Output.printChar(111); // o
+        do Output.printChar(117); // u
+        do Output.printChar(99);  // c
+        do Output.printChar(104); // h
+        do Output.printChar(101); // e
+        return;
+    }
+    function void Fpoursortir(){
+        do Output.printChar(70);  // F
+        do Output.printChar(32);  // espace
+        do Output.printChar(112); // p
+        do Output.printChar(111); // o
+        do Output.printChar(117); // u
+        do Output.printChar(114); // r
+        do Output.printChar(32);  // espace
+        do Output.printChar(115); // s
+        do Output.printChar(111); // o
+        do Output.printChar(114); // r
+        do Output.printChar(116); // t
+        do Output.printChar(105); // i
+        do Output.printChar(114); // r
+        return;
+    }
+    ////////////////////////////////////
+    // Ajoutez ces méthodes à Strings.jack
+
+function void printEquipe() {
+    do Output.printChar(69);  // E
+    do Output.printChar(81);  // Q
+    do Output.printChar(85);  // U
+    do Output.printChar(73);  // I
+    do Output.printChar(80);  // P
+    do Output.printChar(69);  // E
+    return;
+}
+
+function void printFlechesPourNaviguer() {
+    do Output.printChar(70);
+    do Output.printChar(108);
+    do Output.printChar(101);
+    do Output.printChar(99);
+    do Output.printChar(104);
+    do Output.printChar(101);
+    do Output.printChar(115);
+    do Output.printChar(58);
+    do Output.printChar(32);
+    do Output.printChar(78);
+    do Output.printChar(97);
+    do Output.printChar(118);
+    do Output.printChar(105);
+    do Output.printChar(103);
+    do Output.printChar(117);
+    do Output.printChar(101);
+    do Output.printChar(114);
+    do Output.printChar(32);
+    do Output.printChar(124);
+    do Output.printChar(32);
+
+    return;
+}
+
+function void printEntreePourEchanger() {
+    do Output.printChar(69);
+    do Output.printChar(78);
+    do Output.printChar(84);
+    do Output.printChar(82);
+    do Output.printChar(69);
+    do Output.printChar(69);
+    do Output.printChar(58);
+    do Output.printChar(32);
+    do Output.printChar(69);
+    do Output.printChar(99);
+    do Output.printChar(104);
+    do Output.printChar(97);
+    do Output.printChar(110);
+    do Output.printChar(103);
+    do Output.printChar(101);
+    do Output.printChar(114);
+    do Output.printChar(32);
+    do Output.printChar(124);
+    do Output.printChar(32);
+
+    return;
+}
+
+function void printEchapPourRetour() {
+    do Output.printChar(69);
+  do Output.printChar(67);
+  do Output.printChar(72);
+  do Output.printChar(65);
+  do Output.printChar(80);
+  do Output.printChar(58);
+  do Output.printChar(32);
+  do Output.printChar(82);
+  do Output.printChar(101);
+  do Output.printChar(116);
+  do Output.printChar(111);
+  do Output.printChar(117);
+  do Output.printChar(114);
+
+    return;
+}
+
+function void printSelectionnerDestination() {
+  do Output.printChar(83);
+  do Output.printChar(101);
+  do Output.printChar(108);
+  do Output.printChar(101);
+  do Output.printChar(99);
+  do Output.printChar(116);
+  do Output.printChar(105);
+  do Output.printChar(111);
+  do Output.printChar(110);
+  do Output.printChar(110);
+  do Output.printChar(101);
+  do Output.printChar(122);
+  do Output.printChar(32);
+  do Output.printChar(108);
+  do Output.printChar(97);
+  do Output.printChar(32);
+  do Output.printChar(100);
+  do Output.printChar(101);
+  do Output.printChar(115);
+  do Output.printChar(116);
+  do Output.printChar(105);
+  do Output.printChar(110);
+  do Output.printChar(97);
+  do Output.printChar(116);
+  do Output.printChar(105);
+  do Output.printChar(111);
+  do Output.printChar(110);
+
+    return;
+}
+
+function void printChoisirPokemon() {
+    do Output.printChar(67);
+    do Output.printChar(104);
+    do Output.printChar(111);
+    do Output.printChar(105);
+    do Output.printChar(115);
+    do Output.printChar(105);
+    do Output.printChar(114);
+    do Output.printChar(32);
+    do Output.printChar(117);
+    do Output.printChar(110);
+    do Output.printChar(32);
+    do Output.printChar(80);
+    do Output.printChar(111);
+    do Output.printChar(107);
+    do Output.printChar(101);
+    do Output.printChar(109);
+    do Output.printChar(111);
+    do Output.printChar(110);
+    do Output.printChar(58);
+    return;
+}
+
+function void printRetour() {
+    do Output.printChar(40);  // (
+    do Output.printChar(69);  // E
+    do Output.printChar(83);  // S
+    do Output.printChar(67);  // C
+    do Output.printChar(41);  // )
+    do Output.printChar(32);  // espace
+    do Output.printChar(82);  // R
+    do Output.printChar(101); // e
+    do Output.printChar(116); // t
+    do Output.printChar(111); // o
+    do Output.printChar(117); // u
+    do Output.printChar(114); // r
+    return;
+}
+
+function void printPokemonKO() {
+    do Output.printString("Ce Pokemon est KO!");
+    return;
+}
+
+function void printDejaActif() {
+    do Output.printString("Ce Pokemon est deja actif!");
+    return;
+}
+
+function void printReviens() {
+    do Output.printString("Reviens! ");
+    return;
+}
+
+function void printAllez() {
+    do Output.printString("Allez! ");
+    return;
+}
+
+function void printChanger() {
+    do Output.printChar(40);  // (
+    do Output.printChar(83);  // S
+    do Output.printChar(41);  // )
+    do Output.printChar(32);  // espace
+    do Output.printChar(67);  // C
+    do Output.printChar(104); // h
+    do Output.printChar(97);  // a
+    do Output.printChar(110); // n
+    do Output.printChar(103); // g
+    do Output.printChar(101); // e
+    do Output.printChar(114); // r
+    return;
+}
+function void Fleches_NavENTREE_SwapESC_Retour(){
+    do Output.printChar(70);  // F
+    do Output.printChar(108); // l
+    do Output.printChar(108); // l
+    do Output.printChar(101); // e
+    do Output.printChar(115); // s
+    do Output.printChar(58);  // :
+    do Output.printChar(32);  // espace
+    do Output.printChar(78);  // N
+    do Output.printChar(97);  // a
+    do Output.printChar(118); // v
+    do Output.printChar(105); // i
+    do Output.printChar(103); // g
+    do Output.printChar(32);  // espace
+    do Output.printChar(101);  // e
+    do Output.printChar(110); // n
+    do Output.printChar(116); // t
+    do Output.printChar(114); // r
+    do Output.printChar(101); // e
+    do Output.printChar(58);  // :
+    do Output.printChar(83); //S
+    do Output.printChar(119); // w
+    do Output.printChar(97);  // a
+    do Output.printChar(112); // p
+    do Output.printChar(32);  // espace
+    do Output.printChar(81);  // Q
+    do Output.printChar(58);  // :
+    do Output.printChar(32);  // espace
+    do Output.printChar(82);  // R
+    do Output.printChar(101); // e
+    do Output.printChar(116); // t
+    do Output.printChar(111); // o
+    do Output.printChar(117); // u
+    do Output.printChar(114); // r
+    return;
+}
+function void drawseparation(){
+    do Output.printChar(61);    
+    do Output.printChar(61);
+    do Output.printChar(61);     
+    do Output.printChar(61);
+    do Output.printChar(61);       
+    do Output.printChar(61);
+    do Output.printChar(61);       
+    do Output.printChar(61);
+    do Output.printChar(61);       
+    do Output.printChar(61);
+    do Output.printChar(61);
+    do Output.printChar(61);    
+    do Output.printChar(61);
+    do Output.printChar(61);
+    do Output.printChar(61);    
+    do Output.printChar(61);
+    do Output.printChar(61);
+    do Output.printChar(61);    
+    do Output.printChar(61);
+    do Output.printChar(61);
+    return;
+}
+function void printInventaire() {
+    do Output.printChar(73);  // I
+    do Output.printChar(78);  // N
+    do Output.printChar(86);  // V
+    do Output.printChar(69);  // E
+    do Output.printChar(78);  // N
+    do Output.printChar(84);  // T
+    do Output.printChar(65);  // A
+    do Output.printChar(73);  // I
+    do Output.printChar(82);  // R
+    do Output.printChar(69);  // E
+    return;
+}
+
+function void printPokeball() {
+    do Output.printChar(80);  // P
+    do Output.printChar(111); // o
+    do Output.printChar(107); // k
+    do Output.printChar(101); // e
+    do Output.printChar(98);  // b
+    do Output.printChar(97);  // a
+    do Output.printChar(108); // l
+    do Output.printChar(108); // l
+    return;
+}
+
+function void printPotion() {
+    do Output.printChar(80);  // P
+    do Output.printChar(111); // o
+    do Output.printChar(116); // t
+    do Output.printChar(105); // i
+    do Output.printChar(111); // o
+    do Output.printChar(110); // n
+    return;
+}
+
+function void printSuperPotion() {
+    do Output.printChar(83);  // S
+    do Output.printChar(117); // u
+    do Output.printChar(112); // p
+    do Output.printChar(101); // e
+    do Output.printChar(114); // r
+    do Output.printChar(32);  // espace
+    do Output.printChar(80);  // P
+    do Output.printChar(111); // o
+    do Output.printChar(116); // t
+    do Output.printChar(105); // i
+    do Output.printChar(111); // o
+    do Output.printChar(110); // n
+    return;
+}
+
+function void printRappel() {
+    do Output.printChar(82);  // R
+    do Output.printChar(97);  // a
+    do Output.printChar(112); // p
+    do Output.printChar(112); // p
+    do Output.printChar(101); // e
+    do Output.printChar(108); // l
+    return;
+}
+
+function void printRanime() {
+    do Output.printChar(82);  // R
+    do Output.printChar(97);  // a
+    do Output.printChar(110); // n
+    do Output.printChar(105); // i
+    do Output.printChar(109); // m
+    do Output.printChar(101); // e
+    return;
+}
+
+function void printPasAssezObjets() {
+    do Output.printChar(80);  // P
+    do Output.printChar(97);  // a
+    do Output.printChar(115); // s
+    do Output.printChar(32);  // espace
+    do Output.printChar(97);  // a
+    do Output.printChar(115); // s
+    do Output.printChar(115); // s
+    do Output.printChar(101); // e
+    do Output.printChar(122); // z
+    do Output.printChar(33);  // !
+    return;
+}
+
+function void printPokemonSoigne() {
+    do Output.printChar(80);  // P
+    do Output.printChar(111); // o
+    do Output.printChar(107); // k
+    do Output.printChar(101); // e
+    do Output.printChar(109); // m
+    do Output.printChar(111); // o
+    do Output.printChar(110); // n
+    do Output.printChar(32);  // espace
+    do Output.printChar(115); // s
+    do Output.printChar(111); // o
+    do Output.printChar(105); // i
+    do Output.printChar(103); // g
+    do Output.printChar(110); // n
+    do Output.printChar(101); // e
+    do Output.printChar(33);  // !
+    return;
+}
+
+function void printPokemonRanime() {
+    do Output.printChar(80);  // P
+    do Output.printChar(111); // o
+    do Output.printChar(107); // k
+    do Output.printChar(101); // e
+    do Output.printChar(109); // m
+    do Output.printChar(111); // o
+    do Output.printChar(110); // n
+    do Output.printChar(32);  // espace
+    do Output.printChar(114); // r
+    do Output.printChar(97);  // a
+    do Output.printChar(110); // n
+    do Output.printChar(105); // i
+    do Output.printChar(109); // m
+    do Output.printChar(101); // e
+    do Output.printChar(33);  // !
+    return;
+}
+
+function void printPokemonPleineVie() {
+    do Output.printChar(68);  // D
+    do Output.printChar(101); // e
+    do Output.printChar(106); // j
+    do Output.printChar(97);  // a
+    do Output.printChar(32);  // espace
+    do Output.printChar(101); // e
+    do Output.printChar(110); // n
+    do Output.printChar(32);  // espace
+    do Output.printChar(102); // f
+    do Output.printChar(111); // o
+    do Output.printChar(114); // r
+    do Output.printChar(109); // m
+    do Output.printChar(101); // e
+    do Output.printChar(33);  // !
+    return;
+}
+
+function void printSelectionnerPokemon() {
+    do Output.printChar(83);  // S
+    do Output.printChar(101); // e
+    do Output.printChar(108); // l
+    do Output.printChar(101); // e
+    do Output.printChar(99);  // c
+    do Output.printChar(116); // t
+    do Output.printChar(105); // i
+    do Output.printChar(111); // o
+    do Output.printChar(110); // n
+    do Output.printChar(110); // n
+    do Output.printChar(101); // e
+    do Output.printChar(122); // z
+    do Output.printChar(32);  // espace
+    do Output.printChar(117); // u
+    do Output.printChar(110); // n
+    do Output.printChar(32);  // espace
+    do Output.printChar(80);  // P
+    do Output.printChar(111); // o
+    do Output.printChar(107); // k
+    do Output.printChar(101); // e
+    do Output.printChar(109); // m
+    do Output.printChar(111); // o
+    do Output.printChar(110); // n
+    return;
+}
+
+}
+

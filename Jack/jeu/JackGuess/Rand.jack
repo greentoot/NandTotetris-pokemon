@@ -1,0 +1,44 @@
+// Rand.jack
+// Simple générateur pseudo-aléatoire (compat Nand2Tetris)
+class Rand {
+    static int state;
+
+    // Initialise la graine
+    function void seed(int s) {
+        // mélange simple pour initialiser
+        let state = (s * 17 + 23) / 3;
+        let state = Rand.next();
+        let state = Rand.next();
+        let state = Rand.next();
+        return;
+    }
+
+    // Retourne un pseudo-nombre
+    function int next() {
+        var int s;
+        let s = state;
+        // petite combinaison multiplicative sans dépassement
+        let s = (s * 73 + 19) / 2;
+        if (s < 0) {
+            let s = 0 - s;
+        }
+        // borne la valeur pour éviter débordement
+        while (s > 32767) {
+            let s = s / 2;
+        }
+        let state = s;
+        return s;
+    }
+
+    function int seededRandom(int min, int max, int seedChar) { 
+        var int r, range; 
+        do Rand.seed(seedChar); 
+        let r = Rand.next(); 
+        let range = max - min + 1; 
+        while (r > range) { 
+            let r = r / 2; } 
+        
+        let r = r + min; 
+        return r; 
+    } 
+}

@@ -1,0 +1,81 @@
+// Guess.jack
+class Guess {
+   static int lastInt;
+
+   function void run() {
+      var int secret, g;
+      var char c;
+
+      do Output.printString("=== Guess the Number (1..100) ===\n");
+      do Output.printString("Press any key to seed random... ");
+      let c = Keyboard.readChar();
+
+      let secret = Rand.seededRandom(1, 100, c);
+      do Output.println();
+
+
+      while (true) {
+         do Output.printString("Enter your guess: ");
+         do Guess.readInt();
+         let g = Guess.getLastInt();
+
+         if (g < secret) {
+            do Output.printString("Too low.\n");
+         } else {
+            if (g > secret) {
+               do Output.printString("Too high.\n");
+            } else {
+               // g = secret
+               do Output.printString("Correct! You win!");
+               do Output.println();
+               do Output.printString("Play again? (y/n): ");
+               let c = Keyboard.readChar();
+               do Output.println();
+
+               if (c = 121) { // 'y'
+                  do Output.printString("Press any key to reseed random... ");
+                  let c = Keyboard.readChar();
+                  do Output.println();
+                  let secret = Rand.seededRandom(1, 100, c);
+               } else {
+                  do Output.printString("Thanks for playing!\n");
+                  return;
+               }
+            }
+         }
+      }
+      return;
+   }
+
+   // Lit un entier depuis le clavier (suite de chiffres terminée par Entrée)
+   function void readInt() {
+      var int acc, ch, d;
+      let acc = 0;
+
+      while (true) {
+         let ch = Keyboard.readChar();
+
+         if (ch = 128) { // Enter
+               do Output.println();
+               let lastInt = acc;  // ✅ mettre à jour la variable statique
+               return;
+         }
+
+            if ((ch < 48) & (ch > 57)) {
+               // ignorer non-chiffres
+            } else {
+               let d = ch - 48;
+               let acc = acc * 10 + d;
+            }
+
+      }
+      return ;
+   }
+
+
+
+
+   function int getLastInt() {
+      return lastInt;
+   }
+}

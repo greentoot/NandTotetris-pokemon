@@ -1,0 +1,200 @@
+// Pnj.jack - Système de PNJ avec combats
+class Pnj {
+    field int x, y;
+    field int type;
+    field int direction;
+    field Array dialogues;
+    field int dialogueCount;
+    field boolean isTrainer;      // Est un dresseur combattant
+    field boolean defeated;       // A été vaincu
+    field int mapId;
+    field Team team;              // Équipe du dresseur
+    
+    constructor Pnj new(int posX, int posY, int pnjType, int map, boolean trainer) {
+        let x = posX;
+        let y = posY;
+        let type = pnjType;
+        let direction = 0;
+        let mapId = map;
+        let isTrainer = trainer;
+        let defeated = false;
+        let dialogues = Array.new(5);
+        let dialogueCount = 0;
+        let team = null;
+        
+        if (isTrainer) {
+            do initTrainerTeam();
+        }
+        
+        return this;
+    }
+    
+    method void initTrainerTeam() {
+        let team = Team.new();
+        
+        // Configuration selon le type de dresseur
+        if (type = 33) { // Dresseur basique
+            // Ajouter un Rattata niveau 5
+            do team.addPokemon(Pokemon.new(6, 5));
+            // Ajouter un Roucool niveau 6
+            do team.addPokemon(Pokemon.new(4, 6));
+        }
+        
+        if (type = 34) { // Scientifique
+            // Équipe scientifique avec Abra et Pikachu
+            do team.addPokemon(Pokemon.new(5, 7));
+            do team.addPokemon(Pokemon.new(3, 8));
+        }
+        
+        if (type = 41) { // Professeur (boss)
+            // Équipe puissante du professeur
+            do team.addPokemon(Pokemon.new(0, 10)); // Salamèche
+            do team.addPokemon(Pokemon.new(1, 10)); // Carapuce
+            do team.addPokemon(Pokemon.new(2, 10)); // Bulbizarre
+        }
+        
+        return;
+    }
+    
+    method int getX() { return x; }
+    method int getY() { return y; }
+    method int getType() { return type; }
+    method int getMapId() { return mapId; }
+    method boolean getIsTrainer() { return isTrainer; }
+    method boolean isDefeated() { return defeated; }
+    method Team getTeam() { return team; }
+    
+    method void setDefeated(boolean value) {
+        let defeated = value;
+        return;
+    }
+    
+    method boolean isAtPosition(int checkX, int checkY) {
+        return (x = checkX) & (y = checkY);
+    }
+    
+    method boolean isFacingPlayer(int playerX, int playerY) {
+        if (direction = 0) { return (playerX = x) & (playerY = (y + 1)); }
+        if (direction = 1) { return (playerX = x) & (playerY = (y - 1)); }
+        if (direction = 2) { return (playerX = (x - 1)) & (playerY = y); }
+        if (direction = 3) { return (playerX = (x + 1)) & (playerY = y); }
+        return false;
+    }
+    
+    method void facePlayer(int playerX, int playerY) {
+        var int dx, dy;
+        let dx = playerX - x;
+        let dy = playerY - y;
+        
+        if (dy > 0) { let direction = 0; }
+        if (dy < 0) { let direction = 1; }
+        if (dx < 0) { let direction = 2; }
+        if (dx > 0) { let direction = 3; }
+        
+        return;
+    }
+    
+    method void interact(Player player, Pokedex pokedex) {
+        do Screen.setColor(false);
+        do Screen.drawRectangle(0, 176, 511, 255);
+        
+        if (type = 31) { do dialogueProfesseur(pokedex); }
+        if (type = 32) { do dialogueInfirmiere(player.getTeam()); }
+        if (type = 33) { do dialogueDresseur(); }
+        if (type = 34) { do dialogueScientifique(); }
+        if (type = 35) { do dialogueEnfant(); }
+        
+        while (Keyboard.keyPressed() = 0) {
+            do Sys.wait(50);
+        }
+        while (~(Keyboard.keyPressed() = 0)) {
+            do Sys.wait(50);
+        }
+        
+        return;
+    }
+    
+    method void dialogueProfesseur(Pokedex pokedex) {
+        do Output.moveCursor(22, 2);
+        
+        if (defeated) {
+            do Output.printString("PROF. CHEN: Tu es vraiment fort!");
+        } else {
+            do Output.printString("PROF. CHEN: Montre-moi ta force!");
+        }
+        
+        return;
+    }
+    
+    method void dialogueInfirmiere(Team playerTeam) {
+        do Output.moveCursor(22, 2);
+        do Output.printString("INFIRMIERE: Bienvenue au Centre Pokemon!");
+        do Sys.wait(1500);
+        
+        do Output.moveCursor(22, 2);
+        do Output.printString("                                          ");
+        do Output.moveCursor(22, 2);
+        do Output.printString("Appuyez sur H pour soigner vos Pokemon");
+        do playerTeam.healAll();
+        return;
+    }
+    
+    method void dialogueDresseur() {
+        do Output.moveCursor(22, 2);
+        if (defeated) {
+            do Output.printString("DRESSEUR: Tu es trop fort pour moi!");
+        } else {
+            do Output.printString("DRESSEUR: Je te defie en combat!");
+        }
+        return;
+    }
+    
+    method void dialogueScientifique() {
+        do Output.moveCursor(22, 2);
+        if (defeated) {
+            do Output.printString("SCIENTIFIQUE: Interessant...");
+        } else {
+            do Output.printString("SCIENTIFIQUE: Testons tes capacites!");
+        }
+        return;
+    }
+    
+    method void dialogueEnfant() {
+        do Output.moveCursor(22, 2);
+        do Output.printString("ENFANT: J'adore les Pokemon! Et toi?");
+        return;
+    }
+    
+    method void draw() {
+        var int location;
+        let location = ((y * 16) * 32) + ((x * 16) / 16);
+        
+        if (type = 31) { do Sprites.drawProfesseur(location); }
+        if (type = 32) { do Sprites.drawInfirmiere(location); }
+        if (type = 33) { do Sprites.drawDresseur(location); }
+        if (type = 34) { do Sprites.drawScientifique(location); }
+        if (type = 35) { do Sprites.drawEnfant(location); }
+        
+        return;
+    }
+    
+    method void erase() {
+        var int px, py;
+        let px = x * 16;
+        let py = y * 16;
+        
+        do Screen.setColor(false);
+        do Screen.drawRectangle(px, py, px + 15, py + 15);
+        
+        return;
+    }
+    
+    method void dispose() {
+        if (~(team = null)) {
+            do team.dispose();
+        }
+        do dialogues.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}

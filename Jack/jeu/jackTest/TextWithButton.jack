@@ -1,0 +1,58 @@
+class TextWithButton {
+    field int state;
+
+    constructor TextWithButton new() {
+        let state = 0;
+        return this;
+    }
+
+    method void drawText() {
+        do Screen.clearScreen();
+        do Output.moveCursor(8, 5);
+        if (state = 0) {
+            do Output.printString("Bonjour !");
+        } else {
+            do Output.printString("Salut !");
+        }
+
+        do Output.moveCursor(10, 5);
+        do Output.printString("Bienvenue sur Jack");
+        do Output.moveCursor(12, 5);
+        do Output.printString("Espace = changer texte, ESC = retour menu");
+
+        return;
+    }
+
+    method void checkButton() {
+        var int key;
+        let key = Keyboard.keyPressed();
+
+        if (key = 32) { // espace
+            let state = 1 - state;
+            do drawText(); // redessiner seulement si changement
+            while (~(Keyboard.keyPressed() = 0)) { do Sys.wait(5); } // attendre relâchement
+        }
+        return;
+    }
+
+    method void run() {
+        var boolean running;
+        var int key;
+
+        let running = true;
+        do drawText(); // affiche une fois au départ
+
+        while (running) {
+            do checkButton();
+            let key = Keyboard.keyPressed();
+            if (key = 140) { // touche ESC
+                let running = false;
+                do Screen.clearScreen();
+                while (~(Keyboard.keyPressed() = 0)) { do Sys.wait(5); } // attendre relâchement
+            }
+            do Sys.wait(10);
+        }
+
+        return;
+    }
+}

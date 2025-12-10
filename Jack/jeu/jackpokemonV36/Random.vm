@@ -1,0 +1,74 @@
+function Random.init 0
+push constant 12345
+pop static 0
+push constant 0
+return
+function Random.next 0
+push static 0
+push constant 75
+call Math.multiply 2
+push constant 74
+add
+pop static 0
+label LABEL_0
+push static 0
+push constant 32767
+gt
+not
+if-goto LABEL_1
+push static 0
+push constant 32767
+sub
+pop static 0
+goto LABEL_0
+label LABEL_1
+label LABEL_2
+push static 0
+push constant 0
+lt
+not
+if-goto LABEL_3
+push static 0
+push constant 32767
+add
+pop static 0
+goto LABEL_2
+label LABEL_3
+push static 0
+return
+function Random.randRange 3
+push argument 1
+push argument 0
+sub
+push constant 1
+add
+pop local 0
+call Random.next 0
+pop local 1
+push local 1
+push local 1
+push local 0
+call Math.divide 2
+push local 0
+call Math.multiply 2
+sub
+pop local 2
+push argument 0
+push local 2
+add
+return
+function Random.chance 2
+call Random.next 0
+pop local 0
+push local 0
+push local 0
+push constant 100
+call Math.divide 2
+push constant 100
+call Math.multiply 2
+sub
+pop local 1
+push local 1
+push argument 0
+lt
+return
